@@ -45,10 +45,13 @@ const getWheatherDataFromApi=async()=>{
           </h2>
           <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
           <figure>
-              <img class="city-icon" src="https://openweathermap.org/img/wn/03n@2x.png"/>
-             <figcaption>scattered clouds</figcaption>
+              <img class="city-icon" src="${iconUrl}"/>
+             <figcaption>${weather[0].description}</figcaption>
            </figure>
         `
+
+        createdLi.innerHTML=createdLiInnerHTML;
+        list.append(createdLi)
 
         
 
