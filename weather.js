@@ -30,6 +30,15 @@ const getWheatherDataFromApi=async()=>{
         const response=await axios(url);  //default ==>get
         const {name,main,sys,weather} =response.data;
         let iconUrl=`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`
+         //! forEach =>array and nodelist use
+
+        const cityListItem=list.querySelectorAll(".city")
+        const cityListItemArray=Array.from(cityListItem)
+
+        if(cityListItemArray.length>0){
+            const filteredArray=cityListItemArray.filter(cityCard=>cityCard.querySelectorAll(".city-name"))
+        }
+
 
 
         const createdLi = document.createElement("li");
