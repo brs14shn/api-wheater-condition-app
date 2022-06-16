@@ -18,4 +18,6 @@ form.addEventListener("submit",(e)=>{
 
 const getWheatherDataFromApi=()=>{
     alert("htpp request gone")
+    //input.value="";
+    form.reset();
 }
