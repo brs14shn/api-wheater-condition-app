@@ -17,7 +17,17 @@ form.addEventListener("submit",(e)=>{
 
 
 const getWheatherDataFromApi=()=>{
-    alert("htpp request gone")
+    //alert("htpp request gone")
     //input.value="";
-    form.reset();
+    //* APİ YE İSTEK GÖNDERMEK İÇİN APİ KEYE İHTİYAÇ VARDIR.
+    let apiKey=DecryptStringAES(localStorage.getItem("apiKey"));
+    //console.log(apiKey);
+    let inputVal=input.value;
+    let url=`https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}`
+     form.reset();
 }
+
+
+
+//*veri gönderirken ve alırken json formatında getirir.fetch yönteminde tekrar json formatına çevirmemiz gerek
+//*fetch js native func iken axious bir pakettir
