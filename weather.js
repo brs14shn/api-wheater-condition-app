@@ -16,7 +16,7 @@ form.addEventListener("submit",(e)=>{
 })
 
 
-const getWheatherDataFromApi=()=>{
+const getWheatherDataFromApi=async()=>{
     //alert("htpp request gone")
     //input.value="";
     //* APİ YE İSTEK GÖNDERMEK İÇİN APİ KEYE İHTİYAÇ VARDIR.
@@ -25,13 +25,37 @@ const getWheatherDataFromApi=()=>{
     let inputVal=input.value;
     let unitType="metric";
     let lang="tr"
-    let url=`https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}&units=${unitType}&lang=${lang}`;
-    try{
+    let url=`https://api.openweathermap.org/data/2.5/weather?q={inputVal}&appid={apiKey}&units=${unitType}&lang=${lang}`;
 
+    try{
+        //const response=await fetch(url).then(response=>response.json())
+
+        const response=await axios(url);  //default ==>get
+        const {name,main,sys,weather} =response.data;
+
+        let iconUrl=`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`
+
+
+        const createdLi=document.createElement("li");
+        createdLi.classList.add("city");
+        const createdLiInnerHTML=`
+           <h2 class="city-name" data-name="Ankara, TR">
+            <span>Ankara</span>
+            <sup>TR</sup>
+          </h2>
+          <div class="city-temp">1<sup>°C</sup></div>
+          <figure>
+              <img class="city-icon" src="https://openweathermap.org/img/wn/03n@2x.png"/>
+             <figcaption>scattered clouds</figcaption>
+           </figure>
+        `
+
+        
 
     }
-    catch{
-        
+    catch(error){
+        console.log(error);
+
     }
      form.reset();
 }
@@ -39,4 +63,5 @@ const getWheatherDataFromApi=()=>{
 
 
 //*veri gönderirken ve alırken json formatında getirir.fetch yönteminde tekrar json formatına çevirmemiz gerek
-//*fetch js native func iken axious bir pakettir
+//*fetch js native func iken axious bir pakettir.
+//* axios için 
