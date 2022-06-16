@@ -39,11 +39,11 @@ const getWheatherDataFromApi=async()=>{
         const createdLi=document.createElement("li");
         createdLi.classList.add("city");
         const createdLiInnerHTML=`
-           <h2 class="city-name" data-name="Ankara, TR">
-            <span>Ankara</span>
-            <sup>TR</sup>
+           <h2 class="city-name" data-name="${name}, ${sys.country}">
+            <span>${name}</span>
+            <sup> ${sys.country}/sup>
           </h2>
-          <div class="city-temp">1<sup>°C</sup></div>
+          <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
           <figure>
               <img class="city-icon" src="https://openweathermap.org/img/wn/03n@2x.png"/>
              <figcaption>scattered clouds</figcaption>
