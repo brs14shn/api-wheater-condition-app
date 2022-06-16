@@ -1,9 +1,6 @@
 const form=document.querySelector(".top-banner form");
-
 const input=document.querySelector(".top-banner input");
-
 const msg=document.querySelector("span.msg");
-
 const list=document.querySelector(".ajax-section .cities")
 
 
@@ -20,38 +17,36 @@ const getWheatherDataFromApi=async()=>{
     //alert("htpp request gone")
     //input.value="";
     //* APİ YE İSTEK GÖNDERMEK İÇİN APİ KEYE İHTİYAÇ VARDIR.
-    let apiKey=DecryptStringAES(localStorage.getItem("apiKey"));
+    let tokenKey = DecryptStringAES(localStorage.getItem("apiKey"));
     //console.log(apiKey);
-    let inputVal=input.value;
-    let unitType="metric";
-    let lang="tr"
-    let url=`https://api.openweathermap.org/data/2.5/weather?q={inputVal}&appid={apiKey}&units=${unitType}&lang=${lang}`;
+    let inputVal = input.value;
+    let unitType = "metric";
+    let lang = "tr";
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${tokenKey}&units=${unitType}&lang=${lang}`;
 
     try{
-        //const response=await fetch(url).then(response=>response.json())
-
+   // const response = await fetch.get(url).then(response => response.json());
+    //axios.get(url) == axios(url)
         const response=await axios(url);  //default ==>get
         const {name,main,sys,weather} =response.data;
-
         let iconUrl=`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`
 
 
-        const createdLi=document.createElement("li");
+        const createdLi = document.createElement("li");
         createdLi.classList.add("city");
-        const createdLiInnerHTML=`
-           <h2 class="city-name" data-name="${name}, ${sys.country}">
-            <span>${name}</span>
-            <sup> ${sys.country}/sup>
-          </h2>
-          <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
-          <figure>
-              <img class="city-icon" src="${iconUrl}"/>
-             <figcaption>${weather[0].description}</figcaption>
-           </figure>
-        `
-
-        createdLi.innerHTML=createdLiInnerHTML;
-        list.append(createdLi)
+        const createdLiInnerHTML = 
+            `<h2 class="city-name" data-name="${name}, ${sys.country}">
+                <span>${name}</span>
+                <sup>${sys.country}</sup>
+            </h2>
+            <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
+            <figure>
+                <img class="city-icon" src="${iconUrl}">
+                <figcaption>${weather[0].description}</figcaption>
+            </figure>`;
+        createdLi.innerHTML = createdLiInnerHTML;
+        //append vs. prepend
+        list.append(createdLi);
 
         
 
