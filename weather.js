@@ -23,7 +23,9 @@ const getWheatherDataFromApi=()=>{
     let apiKey=DecryptStringAES(localStorage.getItem("apiKey"));
     //console.log(apiKey);
     let inputVal=input.value;
-    let url=`https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}`
+    let unitType="metric";
+    let lang="tr"
+    let url=`https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}&units=${unitType}&lang=${lang}`;
      form.reset();
 }
 
