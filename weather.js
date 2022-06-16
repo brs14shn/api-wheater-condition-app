@@ -46,8 +46,9 @@ const getWheatherDataFromApi=async()=>{
             </figure>`;
         createdLi.innerHTML = createdLiInnerHTML;
         //append vs. prepend
-        list.append(createdLi);
-
+        //list.append(createdLi);
+        //* son eklediğimizi en başta görmek istiyoruz.bunun için prepend ile son eklediğimizi en başa alır
+        list.prepend(createdLi);
         
 
     }
