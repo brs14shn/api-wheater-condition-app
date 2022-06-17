@@ -1,12 +1,12 @@
 const form = document.querySelector('section.top-banner form');
 const input = document.querySelector('.top-banner input');
 const msg = document.querySelector('span.msg');
-const list = document.querySelector('.ajax-section .cities');
+const list = document.querySelector('.ajax-section ul.cities');
 
-localStorage.setItem(
-  'apiKey',
-  EncryptStringAES('4d8fb5b93d4af21d66a2948710284366')
-);
+// localStorage.setItem(
+//   'apiKey',
+//   EncryptStringAES('4d8fb5b93d4af21d66a2948710284366')
+// );
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -32,8 +32,11 @@ const getWeatherDataFromApi = async () => {
     // console.log(response.data);
     let iconUrl = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
 
+   
+
     //forEach => array + nodeList
     //map, filter, reduce => array
+    //*=============aynı ismin veri girişi engellemek=========*
     const cityListItems = list.querySelectorAll('.city');
     const cityListItemsArray = Array.from(cityListItems);
     if (cityListItemsArray.length > 0) {
@@ -53,7 +56,8 @@ const getWeatherDataFromApi = async () => {
     // else{}
     const createdLi = document.createElement('li');
     createdLi.classList.add('city');
-    const createdLiInnerHTML = `<h2 class="city-name" data-name="${name}, ${
+    const createdLiInnerHTML =
+    `<h2 class="city-name" data-name="${name}, ${
       sys.country
     }">
                 <span>${name}</span>
@@ -67,6 +71,7 @@ const getWeatherDataFromApi = async () => {
     createdLi.innerHTML = createdLiInnerHTML;
     //append vs. prepend
     list.prepend(createdLi);
+    
   } catch (error) {
     msg.innerText = error;
     setTimeout(() => {
